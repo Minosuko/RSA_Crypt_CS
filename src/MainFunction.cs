@@ -92,9 +92,9 @@ namespace C_SHARP_RSA_EXAMPLE
                 else if (cmd.Substring(0, 7) == "---info")
                 {
                     Console.WriteLine("C# RSA Encrypt/Decrypt");
-                    Console.WriteLine("By Catover203");
-                    Console.WriteLine("github: https://github.com/Catover203");
-                    Console.WriteLine("source code: https://github.com/Catover203/RSA_Crypt_CS");
+                    Console.WriteLine("By Minosuko");
+                    Console.WriteLine("github: https://github.com/Minosuko");
+                    Console.WriteLine("source code: https://github.com/Minosuko/RSA_Crypt_CS");
                 }
                 else if (cmd.Substring(0, 7) == "---help")
                 {
