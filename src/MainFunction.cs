@@ -45,18 +45,9 @@ namespace C_SHARP_RSA_EXAMPLE
                     string key = GetKey("pub");
                     int str_lenght = cmd.Length;
                     string filename = cmd.Substring(8, str_lenght - 8);
-                    using (StreamReader read = new StreamReader(filename))
-                    {
-                        string data = read.ReadToEnd();
-                        using (StreamWriter write = new StreamWriter(filename + ".rsa.encrypt.txt"))
-                        {
-                            Encoding wind1252 = Encoding.GetEncoding(1252);
-                            byte[] b_data = wind1252.GetBytes(data);
-                            byte[] crypt = RSA_crypt.Encryption(b_data, key);
-                            string s_data = wind1252.GetString(crypt);
-                            write.Write(s_data);
-                        }
-                    }
+                    byte[] data = File.ReadAllBytes(filename);
+                    byte[] crypt = RSA_crypt.Encryption(data, key);
+                    File.WriteAllBytes(filename + ".rsa.encrypt.txt");
                     Console.Write("Encrypt finished");
                 }
                 else if (cmd.Substring(0, 7) == "decrypt")
@@ -67,18 +58,9 @@ namespace C_SHARP_RSA_EXAMPLE
                     RSA rsa = RSA.Create();
                     rsa.FromXmlString(key);
                     RSAParameters private_key = rsa.ExportParameters(true);
-                    using (StreamReader read = new StreamReader(filename))
-                    {
-                        string data = read.ReadToEnd();
-                        using (StreamWriter write = new StreamWriter(filename + ".rsa.decrypt.txt"))
-                        {
-                            Encoding wind1252 = Encoding.GetEncoding(1252);
-                            byte[] b_data = wind1252.GetBytes(data);
-                            byte[] crypt = RSA_crypt.Decryption(b_data, key);
-                            string s_data = wind1252.GetString(crypt);
-                            write.Write(s_data);
-                        }
-                    }
+                    byte[] data = File.ReadAllBytes(filename);
+                    byte[] crypt = RSA_crypt.Decryption(data, key);
+                    File.WriteAllBytes(filename + ".rsa.decrypt.txt");
                     Console.Write("Decrypt finished");
                 }
                 else if (cmd.Substring(0, 7) == "version")
